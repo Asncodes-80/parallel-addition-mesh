@@ -2,7 +2,7 @@ pub mod data;
 mod test;
 
 pub fn run_some_task(data: Vec<[i32; 5]>) {
-    running_methods::parallel_method(data);
+    running_methods::sequential_method(data);
 }
 
 pub mod running_methods {
@@ -38,6 +38,6 @@ pub mod running_methods {
             value.push(v);
         });
 
-        return value.lock().unwrap().par_iter().sum();
+        return value.lock().unwrap().iter().sum();
     }
 }
