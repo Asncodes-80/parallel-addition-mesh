@@ -9,38 +9,24 @@ pub fn prepared_data() -> Vec<[i32; 5]> {
     ];
 }
 
-pub fn random_data() -> Vec<[i32; 5]> {
+pub fn make_random_row() -> Vec<i32> {
     let mut rng = rand::thread_rng();
 
-    let data = vec![
-        [
-            rng.gen_range(100_000_000..=500_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-        ],
-        [
-            rng.gen_range(100_000_000..=500_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-        ],
-        [
-            rng.gen_range(100_000_000..=500_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-        ],
-        [
-            rng.gen_range(100_000_000..=500_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-            rng.gen_range(100_000_000..=900_000_000),
-        ],
-    ];
+    let mut rand_row = vec![];
+
+    for _ in 0..16374 {
+        rand_row.push(rng.gen_range(100_000_000..=500_000_000) - 20_000);
+    }
+
+    return rand_row;
+}
+
+pub fn random_data() -> Vec<Vec<i32>> {
+    let mut data = vec![];
+
+    for _ in 0..16374 {
+        data.push(make_random_row());
+    }
+
     return data;
 }

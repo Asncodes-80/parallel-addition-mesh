@@ -1,7 +1,7 @@
 pub mod data;
 mod test;
 
-pub fn run_some_task(data: Vec<[i32; 5]>) {
+pub fn run_some_task(data: Vec<Vec<i32>>) {
     running_methods::sequential_method(data);
 }
 
@@ -9,7 +9,7 @@ pub mod running_methods {
     use rayon::prelude::*;
     use std::sync::{Mutex, MutexGuard};
 
-    pub fn sequential_method(data: Vec<[i32; 5]>) -> i32 {
+    pub fn sequential_method(data: Vec<Vec<i32>>) -> i32 {
         let mut a_column: Vec<i32> = Vec::new();
         let mut sum: i32 = 0;
 
@@ -28,7 +28,7 @@ pub mod running_methods {
         return sum;
     }
 
-    pub fn parallel_method(data: Vec<[i32; 5]>) -> i32 {
+    pub fn parallel_method(data: Vec<Vec<i32>>) -> i32 {
         let value: Mutex<Vec<i32>> = Mutex::new(vec![]);
 
         data.par_iter().for_each(|row| {
